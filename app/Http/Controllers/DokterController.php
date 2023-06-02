@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
 {
     public function index()
     {
-        $dokters = Dokter::getAll();
+        $dokters = Dokter::all();
         return view('dokter/index', [
             "dokters" => $dokters
         ]);
@@ -21,6 +22,14 @@ class DokterController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        Dokter::create([
+            'nama' => $request->nama,
+            'jk' => $request->jk,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'telp' => $request->telp,
+        ]);
+
+        return redirect('/dokter');
     }
 }

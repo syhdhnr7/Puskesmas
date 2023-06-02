@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar Pasien</title>
+    <title>Daftar Dokter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
@@ -12,9 +12,9 @@
 @extends('main')
 @section('content')
     <div class="container card">
-        <h1>Daftar Pasien</h1>
+        <h1>Daftar Dokter</h1>
         <br>
-        <a href="/pasien/create" class="btn btn-primary">+ Tambah Pasien</a>
+        <a href="/dokter/create" class="btn btn-primary">+ Tambah Dokter</a>
         <hr>
 
         @if (session('success'))
@@ -37,7 +37,7 @@
             </thead>
             <tbody>
                 @php $iteration = 1 @endphp
-                @foreach ($pasiens as $item)
+                @foreach ($dokters as $item)
                 <tr>
                     <td>{{ $iteration++ }}</td>
                     <td>{{ $item['nama'] }}</td>
