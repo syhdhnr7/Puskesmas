@@ -14,7 +14,9 @@
     <div class="container card">
         <h1>Daftar Dokter</h1>
         <br>
+        @if(Auth::user()->role == 'admin')
         <a href="/dokter/create" class="btn btn-primary">+ Tambah Dokter</a>
+        @endif
         <hr>
 
         @if (session('success'))
@@ -52,6 +54,7 @@
                     <td>{{ $item['alamat'] }}</td>
                     <td>{{ $item['telp'] }}</td>
                     <td>
+                        @if(Auth::user()->role == 'admin')
                         <a href="/dokter/edit/{{ $item->id }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="/dokter" method="POST" class="d-inline">
                             @csrf
@@ -59,6 +62,9 @@
                             <input type="hidden" value="{{ $item->id }}" name="id">
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus</button>
                         </form>
+                        @else
+                            -
+                        @endif
                     </td>
                     @endforeach
             </tbody>
