@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 
 class PasienController extends Controller
@@ -17,7 +18,10 @@ class PasienController extends Controller
 
     public function create()
     {
-        return view('pasien/create');
+        $dokters = Dokter::all();
+        return view('pasien/create', [
+            'dokters' => $dokters
+        ]);
     }
 
     //method untuk menyimpan data ke database
@@ -31,6 +35,7 @@ class PasienController extends Controller
             'tgl_lahir' => 'required|date',
             'alamat' => 'required',
             'telp' => 'required|numeric',
+            'dokter_id' => 'required',
         ]);
 
         Pasien::create([
@@ -39,6 +44,7 @@ class PasienController extends Controller
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
+            'dokter_id' => $request->dokter_id,
         ]);
 
         return redirect('/pasien');
@@ -79,9 +85,10 @@ class PasienController extends Controller
 
         return redirect('/pasien')->with('success', 'Data pasien berhasil diubah');
     }
-    
+
     //method untuk menghapus
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
         Pasien::destroy($request->id);
 
         return redirect('/pasien')->with('success', 'Data berhasil dihapus');

@@ -52,3 +52,7 @@ Route::get('/pasien', [PasienController::class, 'index'])->middleware('auth');
 Route::get('/dokter', [DokterController::class, 'index'])->middleware('auth');
 
 Auth::routes();
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

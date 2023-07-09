@@ -13,5 +13,9 @@ class Pasien extends Model
     protected $table = 'pasiens';
 
     //
-    protected $fillable = ['nama', 'jk', 'tgl_lahir', 'alamat', 'telp'];
+    protected $fillable = ['nama', 'jk', 'tgl_lahir', 'alamat', 'telp', 'dokter_id'];
+
+    public function dokter(){
+        return $this->belongsTo(Dokter::class);
+    }
 }
